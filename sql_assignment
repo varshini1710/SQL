@@ -1,0 +1,23 @@
+1.  select CountryCode, GROUP_CONCAT(Language) 
+   from CountryLanguage 
+   Group By CountryCode 
+   Having Count(*) = (select MAX(lang) 
+   from (select Count(*) as lang 
+   from CountryLanguage Group By CountryCode) t);
+
+2.  select Country.Name as 'country', City.Name as 'city', max(City.Population) 
+   from Country, City 
+   where Country.code = City.CountryCode group by country;
+
+3. (a,b) - select count(*) City, sum(population) as 'total_population' 
+            from City
+           where state = 'Tamil Nadu';
+   (C)   - select sum(population) 
+            from City 
+            where name in ('Coimbatore','Tiruchirapalli','Salem') and State = 'Tamil Nadu';
+
+4.  select Name, Population from City 
+   where Name in ('madurai', 'coimbatore', 'tirunelveli', 'salem', 'erode') 
+   order by field (Name,"madurai","coimbatore","tirunelveli","salem", "erode");
+
+
